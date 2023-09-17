@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Trail.gd" type="Script" id=1]
 [ext_resource path="res://Map.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/paddle/default.png" type="Texture" id=7]
 [ext_resource path="res://assets/ball/default.png" type="Texture" id=8]
 [ext_resource path="res://assets/light.png" type="Texture" id=9]
+[ext_resource path="res://mobile_controls.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve" id=9]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
@@ -129,6 +130,8 @@ margin_left = 96.0
 margin_right = 136.0
 margin_bottom = 14.0
 text = "LIVES"
+
+[node name="MobileControls" parent="." instance=ExtResource( 10 )]
 
 [connection signal="body_entered" from="Paddle" to="Ball" method="_on_Paddle_body_entered"]
 [connection signal="area_entered" from="BorderLeft" to="Paddle" method="_on_BorderLeft_area_entered"]
