@@ -55,18 +55,17 @@ end_cap_mode = 2
 script = ExtResource( 1 )
 
 [node name="Paddle" type="Area2D" parent="."]
+position = Vector2( 160, 168 )
 script = ExtResource( 3 )
 
 [node name="Paddle" type="Sprite" parent="Paddle"]
-position = Vector2( 40, 168 )
 texture = ExtResource( 7 )
 
 [node name="PaddleShape" type="CollisionShape2D" parent="Paddle"]
-position = Vector2( 40, 168 )
 shape = SubResource( 2 )
 
 [node name="Ball" type="KinematicBody2D" parent="."]
-position = Vector2( 40, 160 )
+position = Vector2( 160, 160 )
 script = ExtResource( 4 )
 
 [node name="Ball" type="Sprite" parent="Ball"]
@@ -114,8 +113,8 @@ text = "FPS"
 script = ExtResource( 6 )
 
 [node name="Score" type="Label" parent="."]
-margin_left = 8.0
-margin_right = 49.0
+margin_left = 16.0
+margin_right = 57.0
 margin_bottom = 14.0
 text = "SCORE"
 

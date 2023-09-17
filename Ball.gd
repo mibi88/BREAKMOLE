@@ -44,7 +44,7 @@ func _ready():
 	lives_label.set_text("LIVES: " + String(lives))
 	paddle_start_x = paddle.position.x
 	paddle_shape = paddle.get_node("PaddleShape")
-	paddle_width = paddle_shape.get_shape().get_extents().x
+	paddle_width = paddle_shape.get_shape().get_extents().x*2
 	reset()
 	speed_label.set_text("SPEED: " + str(ball_speed))
 	random.randomize()
@@ -62,6 +62,8 @@ func _physics_process(delta):
 		x += speed*2
 	elif staying and !paddle.collision_left and Input.is_action_pressed("ui_left"):
 		x -= speed*2
+	if Input.is_action_pressed("ui_cancel"):
+		get_tree().change_scene("res://main_game.tscn")
 	if staying and Input.is_action_pressed("ui_up"):
 		staying = 0
 		rx = random.randf_range(225, 315)
@@ -99,13 +101,11 @@ func _on_BorderBottom_body_entered(body):
 
 func _on_Paddle_body_entered(body):
 	if !staying:
-		var diff = (position.x - paddle_width*2) - paddle.position.x
+		var diff = global_position.x - paddle.position.x + paddle_width/2
 		var rot = max(min(diff/paddle_width, 1.0), 0.0) * 90
 		rx = rot + 225
 		if ball_speed < 8: ball_speed += 0.25
 		speed_label.set_text("SPEED: " + str(ball_speed))
-
-#func _on_Ball_body_entered(body):
 
 func collision():
 	var pos = tilemap.world_to_map(global_position - tilemap.global_position)
