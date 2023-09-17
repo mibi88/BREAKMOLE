@@ -21,8 +21,8 @@ var lives_label
 var game_data
 
 func reset():
-	staying = 1
-	ball_speed = 1
+	staying = true
+	ball_speed = 1.25
 	position = start_pos
 	trail.clear_points()
 	paddle.position.x = paddle_start_x
@@ -98,11 +98,12 @@ func _on_BorderBottom_body_entered(body):
 
 
 func _on_Paddle_body_entered(body):
-	var diff = (position.x - paddle_width*2) - paddle.position.x
-	var rot = max(min(diff/paddle_width, 1.0), 0.0) * 90
-	rx = rot + 225
-	if ball_speed < 8: ball_speed += 0.25
-	speed_label.set_text("SPEED: " + str(ball_speed))
+	if !staying:
+		var diff = (position.x - paddle_width*2) - paddle.position.x
+		var rot = max(min(diff/paddle_width, 1.0), 0.0) * 90
+		rx = rot + 225
+		if ball_speed < 8: ball_speed += 0.25
+		speed_label.set_text("SPEED: " + str(ball_speed))
 
 #func _on_Ball_body_entered(body):
 

@@ -6,7 +6,7 @@ var collision_right = false
 func _ready():
 	pass
 
-func _process(delta):
+func _physics_process(delta):
 	var speed = 0.016/delta
 	if !collision_right and Input.is_action_pressed("ui_right"):
 		position.x += speed*2
